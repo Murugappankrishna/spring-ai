@@ -1,79 +1,60 @@
-# Spring AI Documentation
+# Comprehensive Workshop Documentation
 
-## Project Overview
-Spring AI is a powerful framework that allows developers to build AI agents using Java, leveraging the capabilities of Spring Framework and integrating with Amazon Bedrock. This project enables the development of intelligent applications that can understand, reason, and learn from data.
+Welcome to the Workshop on AI Agents. This documentation covers all five modules:
 
-## Features
-- **Integration with Amazon Bedrock**: Easily connect to Amazon Bedrock to access pre-trained models and data processing capabilities.
-- **Modular Architecture**: Utilize Spring's modularity to build reusable components.
-- **Extensive Documentation**: Comprehensive guides and examples to help you get started quickly.
-- **Community Support**: Engage with a growing community of developers and contributors.
+## 1. Create the AI Agent
+- **Tech Stack**: Python, Flask, TensorFlow
+- **Prerequisites**: Basic understanding of Python programming, familiarity with Flask web framework.
+- **Setup Instructions**:
+  1. Install required libraries using `pip install -r requirements.txt`.
+  2. Run `flask run` to start the server.
+- **API Endpoints**:
+  - `POST /create-agent`: Create a new AI Agent.
 
-## Prerequisites
-Before you begin, ensure you have the following prerequisites:
-- Java JDK 11 or later installed
-- Maven or Gradle for managing dependencies
-- An AWS account with access to Amazon Bedrock
+## 2. Agent Persona
+- **Tech Stack**: Python, TensorFlow
+- **Prerequisites**: Understanding of machine learning and AI concepts.
+- **Setup Instructions**:
+  1. Implement persona logic in the agent.
+  2. Test changes locally.
+- **API Endpoints**:
+  - `GET /agent-persona`: Get the current persona of the agent.
 
-## Setup Instructions
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/<your-username>/spring-ai.git
-   cd spring-ai
-   ```
+## 3. Conversation Memory
+- **Tech Stack**: Python, Redis
+- **Prerequisites**: Familiarity with data storage solutions.
+- **Setup Instructions**:
+  1. Set up Redis server.
+  2. Configure connection settings in the app.
+- **API Endpoints**:
+  - `POST /memory`: Store conversation data.
 
-2. **Install Dependencies**:
-   If you're using Maven, run:
-   ```bash
-   mvn install
-   ```
-   For Gradle, run:
-   ```bash
-   ./gradlew build
-   ```
+## 4. Knowledge Base (RAG)
+- **Tech Stack**: Elasticsearch, Python
+- **Prerequisites**: Basic knowledge of search engines and indexing.
+- **Setup Instructions**:
+  1. Install Elasticsearch.
+  2. Index knowledge base data.
+- **API Endpoints**:
+  - `GET /knowledge`: Query the knowledge base.
 
-3. **Configure AWS Credentials**:
-   Make sure your AWS credentials are configured. You can do this by setting up the AWS CLI or through the `~/.aws/credentials` file.
+## 5. Tool Calling
+- **Tech Stack**: Python, various APIs
+- **Prerequisites**: Understand API integration.
+- **Setup Instructions**:
+  1. Configure API keys and endpoint URLs.
+- **API Endpoints**:
+  - `POST /call-tool`: Call a specific external tool.
 
-## Usage Examples
-### Creating a Simple AI Agent
-Here's an example of how to create a basic AI agent:
+## Project Structure
+- `app.py`: Main application file.
+- `requirements.txt`: List of required Python packages.
+- `config.py`: Configuration file.
 
-```java
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+## Learning Resources
+- [Official Flask Documentation](https://flask.palletsprojects.com/)
+- [TensorFlow Tutorials](https://www.tensorflow.org/tutorials)
+- [Redis Documentation](https://redis.io/documentation)
 
-@Component
-public class MyAIAgent {
-    private final AiService aiService;
-
-    @Autowired
-    public MyAIAgent(AiService aiService) {
-        this.aiService = aiService;
-    }
-
-    public void run() {
-        String response = aiService.getResponse("Hello, how can I help you?");
-        System.out.println(response);
-    }
-}
-```
-
-### Interacting with Amazon Bedrock
-To interact with Amazon Bedrock, you can use the following example:
-
-```java
-import com.amazonaws.services.bedrock.AWSBedrock;
-import com.amazonaws.services.bedrock.AWSBedrockClientBuilder;
-import com.amazonaws.services.bedrock.model.*;
-
-public class BedrockExample {
-    public static void main(String[] args) {
-        AWSBedrock client = AWSBedrockClientBuilder.defaultClient();
-        // Your Bedrock interaction logic here
-    }
-}
-```
-
-## Conclusion
-With Spring AI, building intelligent applications is straightforward and efficient. Explore the repository for more details, examples, and to contribute to the project. Happy coding!
+## Workshop Series Information
+This series will explore each module in-depth with hands-on examples and real-world applications. Stay tuned for updates!
