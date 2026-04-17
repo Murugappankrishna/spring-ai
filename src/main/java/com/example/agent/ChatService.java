@@ -10,6 +10,7 @@ import org.springframework.ai.chat.memory.repository.jdbc.JdbcChatMemoryReposito
 import org.springframework.ai.chat.memory.repository.jdbc.PostgresChatMemoryRepositoryDialect;
 import org.springframework.ai.chat.client.advisor.vectorstore.QuestionAnswerAdvisor;
 import org.springframework.ai.document.Document;
+import org.springframework.ai.tool.ToolCallbackProvider;
 import org.springframework.ai.vectorstore.VectorStore;
 import java.util.List;
 import javax.sql.DataSource;
@@ -26,7 +27,7 @@ public class ChatService {
     private final ChatClient chatClient;
     private final VectorStore vectorStore;
 
-    public ChatService(ChatClient.Builder chatClientBuilder, DataSource dataSource, VectorStore vectorStore) {
+    public ChatService(ChatClient.Builder chatClientBuilder, DataSource dataSource, VectorStore vectorStore,ToolCallbackProvider tools) {
         this.vectorStore = vectorStore;
 
         var chatMemoryRepository = JdbcChatMemoryRepository.builder()
@@ -45,6 +46,7 @@ public class ChatService {
                         MessageChatMemoryAdvisor.builder(chatMemory).build(),
                         QuestionAnswerAdvisor.builder(vectorStore).build())
                 .defaultTools(new DateTimeTools(), new WeatherTools())
+                .defaultToolCallbacks(tools)
                 .build();
     }
 
